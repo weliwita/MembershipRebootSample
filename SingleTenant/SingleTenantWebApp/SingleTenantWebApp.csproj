@@ -42,6 +42,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BrockAllen.MembershipReboot, Version=8.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BrockAllen.MembershipReboot.8.3.0\lib\net45\BrockAllen.MembershipReboot.dll</HintPath>
+    </Reference>
+    <Reference Include="BrockAllen.MembershipReboot.Ef, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BrockAllen.MembershipReboot.Ef.8.0.0\lib\net45\BrockAllen.MembershipReboot.Ef.dll</HintPath>
+    </Reference>
+    <Reference Include="BrockAllen.MembershipReboot.WebHost, Version=7.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BrockAllen.MembershipReboot.WebHost.7.1.0\lib\net45\BrockAllen.MembershipReboot.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="BrockAllen.OAuth2, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\BrockAllen.OAuth2.2.3.0\lib\net45\BrockAllen.OAuth2.dll</HintPath>
@@ -252,6 +264,36 @@
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\_references.js" />
+    <EmbeddedResource Include="Templates\AccountCreatedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\AccountCreatedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\AccountReopenedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\AccountReopenedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\CertificateAddedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\CertificateAddedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\CertificateRemovedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\CertificateRemovedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\EmailChangedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\EmailChangedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\EmailChangeRequestedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\EmailChangeRequestedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\EmailVerifiedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\EmailVerifiedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\LinkedAccountAddedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\LinkedAccountAddedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\LinkedAccountRemovedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\LinkedAccountRemovedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\MobilePhoneChangedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\MobilePhoneChangedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\MobilePhoneRemovedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\MobilePhoneRemovedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\PasswordChangedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\PasswordChangedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\PasswordResetRequestedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\PasswordResetRequestedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\UsernameChangedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\UsernameChangedEvent_Subject.txt" />
+    <EmbeddedResource Include="Templates\UsernameReminderRequestedEvent_Body.txt" />
+    <EmbeddedResource Include="Templates\UsernameReminderRequestedEvent_Subject.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -276,20 +318,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\src\BrockAllen.MembershipReboot.Ef\BrockAllen.MembershipReboot.Ef.csproj">
-      <Project>{453c8a9d-72aa-4f8d-9354-8b0f57f2b58a}</Project>
-      <Name>BrockAllen.MembershipReboot.Ef</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\BrockAllen.MembershipReboot.WebHost\BrockAllen.MembershipReboot.WebHost.csproj">
-      <Project>{754ae1b9-11d0-4270-98c7-8da69b150860}</Project>
-      <Name>BrockAllen.MembershipReboot.WebHost</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\BrockAllen.MembershipReboot\BrockAllen.MembershipReboot.csproj">
-      <Project>{a33fe01f-ae9b-4bde-b521-ab13916b1cfa}</Project>
-      <Name>BrockAllen.MembershipReboot</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -3,10 +3,70 @@ using BrockAllen.MembershipReboot.Relational;
 using BrockAllen.MembershipReboot.WebHost;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 
 namespace BrockAllen.MembershipReboot.Mvc.App_Start
 {
+
+    //public class MyEmailFormatter : IMessageFormatter<UserAccount>
+    //{
+
+    //    public Message Format(UserAccountEvent<UserAccount> accountEvent, IDictionary<string, string> values)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
+
+    public class MyEmailFormatter2 : EmailMessageFormatter
+    {
+       public MyEmailFormatter2(ApplicationInformation appInfo)
+            : base(appInfo)
+        {
+        }
+       public MyEmailFormatter2(Lazy<ApplicationInformation> appInfo)
+            : base(appInfo)
+        {
+        }
+        protected override string LoadBodyTemplate(UserAccountEvent<UserAccount> evt)
+        {
+            return LoadTemplate(CleanGenericName(evt.GetType()) + "_Body");
+        }
+
+        protected override string LoadSubjectTemplate(UserAccountEvent<UserAccount> evt)
+        {
+            return LoadTemplate(CleanGenericName(evt.GetType()) + "_Subject");
+        }
+
+        private string CleanGenericName(Type type)
+        {
+            var name = type.Name;
+            var idx = name.IndexOf('`');
+            if (idx > 0)
+            {
+                name = name.Substring(0, idx);
+            }
+            return name;
+        }
+
+        const string ResourcePathTemplate = "BrockAllen.MembershipReboot.Mvc.Templates.{0}.txt";
+        string LoadTemplate(string name)
+        {
+            name = String.Format(ResourcePathTemplate, name);
+
+            var asm = typeof(MyEmailFormatter2).Assembly;
+            using (var s = asm.GetManifestResourceStream(name))
+            {
+                if (s == null) return null;
+                using (var sr = new StreamReader(s))
+                {
+                    return sr.ReadToEnd();
+                }
+            }
+        }
+    }
+
+
     public class MembershipRebootConfig
     {
         public static MembershipRebootConfiguration Create()
@@ -20,7 +80,8 @@ namespace BrockAllen.MembershipReboot.Mvc.App_Start
                 "UserAccount/ChangeEmail/Confirm/",
                 "UserAccount/Register/Cancel/",
                 "UserAccount/PasswordReset/Confirm/");
-            var emailFormatter = new EmailMessageFormatter(appinfo);
+
+            var emailFormatter = new MyEmailFormatter2(appinfo);
             // uncomment if you want email notifications -- also update smtp settings in web.config
             config.AddEventHandler(new EmailAccountEventsHandler(emailFormatter));
 
